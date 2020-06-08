@@ -13,8 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/about', function () {
+    $article = App\Article::all();
+    return view('about',[
+        'articles'=> App\Article::take(3)->latest()->get()
+    ]);
+});
+
+Route::get('/articles/{article}', 'ArticlesController@show');
+
+// Route::get('/contact', function () {
+//     return view('contact');
 // });
 
 // Route::get('test',function(){
